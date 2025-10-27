@@ -1,15 +1,15 @@
-import { ChatInterface } from "../components/chat-interface"
-import { ProjectShowcase } from "../components/project-showcase"
-import { SkillsSection } from "../components/skills-section"
-import { Hero } from "../components/hero"
+import { ChatInterface } from '../components/chat-interface';
+import { Hero } from '../components/hero';
+import { ProjectShowcase } from '../components/project-showcase';
+import { SkillsSection } from '../components/skills-section';
 
 export default function Home() {
-  return (
-    <main className="min-h-screen bg-background">
-      <Hero />
-      <ChatInterface />
-      <ProjectShowcase />
-      <SkillsSection />
-    </main>
-  )
+	return (
+		<main className="bg-background min-h-screen">
+			<Hero />
+			<ChatInterface />
+			<ProjectShowcase />
+			<SkillsSection />
+		</main>
+	);
 }
