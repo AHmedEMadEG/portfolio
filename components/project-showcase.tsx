@@ -118,11 +118,11 @@ export function ProjectShowcase() {
 				</div>
 
 				{/* Slider Container */}
-				<div className="relative">
+				<div className="">
 					{/* Navigation Buttons */}
 					<button
 						onClick={prevSlide}
-						className="absolute top-1/2 left-0 z-50 -translate-y-1/2 cursor-pointer rounded-full bg-slate-800 p-3 text-white opacity-30 shadow-lg transition-all hover:scale-110 hover:bg-cyan-600 sm:opacity-100"
+						className="absolute top-[55%] left-5 z-50 -translate-y-1/2 cursor-pointer rounded-full bg-slate-800 p-3 text-white opacity-30 shadow-lg transition-all hover:scale-110 hover:bg-cyan-600 sm:opacity-100"
 					>
 						<svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -131,7 +131,7 @@ export function ProjectShowcase() {
 
 					<button
 						onClick={nextSlide}
-						className="absolute top-1/2 right-0 z-50 -translate-y-1/2 cursor-pointer rounded-full bg-slate-800 p-3 text-white opacity-30 shadow-lg transition-all hover:scale-110 hover:bg-cyan-600 sm:opacity-100"
+						className="absolute top-[55%] right-5 z-50 -translate-y-1/2 cursor-pointer rounded-full bg-slate-800 p-3 text-white opacity-30 shadow-lg transition-all hover:scale-110 hover:bg-cyan-600 sm:opacity-100"
 					>
 						<svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
