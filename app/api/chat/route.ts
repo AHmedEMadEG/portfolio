@@ -1,6 +1,5 @@
-import { generateText } from "ai";
-import { openai } from "@ai-sdk/openai";
-import { portfolioData } from "../../../lib/portfolio-data";
+import { GoogleGenAI } from '@google/genai';
+import { portfolioData } from '../../../lib/portfolio-data';
 
 export const maxDuration = 30;
 
@@ -18,19 +17,56 @@ Portfolio Context:
 ${JSON.stringify(portfolioData, null, 2)}`;
 
 export async function POST(req: Request) {
-  const { messages } = await req.json();
+	try {
+		const { messages } = await req.json();
 
-  const { text } = await generateText({
-    model: openai("gpt-4o-mini"),
-    system: systemPrompt,
-    messages,
-    maxOutputTokens: 500,
-    temperature: 0.7,
-  });
+		// Get the last user message
+		const lastMessage = messages[messages.length - 1];
+		const userQuestion = lastMessage.content;
 
-  return new Response(JSON.stringify({ text }), {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+		const text = await generateContentFromMLDev(userQuestion);
+
+		return new Response(text, {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+	} catch (error) {
+		console.error('API Error:', error);
+		return new Response(
+			JSON.stringify({
+				error: 'Internal server error',
+			}),
+			{
+				status: 500,
+				headers: { 'Content-Type': 'application/json' },
+			}
+		);
+	}
+}
+
+const GEMINI_API_KEY = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+
+async function generateContentFromMLDev(userQuestion: string) {
+	const ai = new GoogleGenAI({
+		vertexai: false,
+		apiKey: GEMINI_API_KEY,
+	});
+
+	const prompt = `${systemPrompt}
+
+User Question: ${userQuestion}
+
+Please provide a helpful response about Ahmed based on the information above:`;
+
+	const response = await ai.models.generateContent({
+		model: 'gemini-2.0-flash-exp',
+		contents: prompt,
+		config: {
+			maxOutputTokens: 500,
+			temperature: 0.7,
+		},
+	});
+
+	return response.text;
 }
