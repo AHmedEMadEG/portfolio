@@ -21,6 +21,11 @@ export const metadata: Metadata = {
 		description: 'Interactive AI-powered portfolio',
 		type: 'website',
 	},
+	icons: {
+		icon: '/my-pic.jpg',
+		shortcut: '/my-pic.jpg',
+		apple: '/my-pic.jpg',
+	},
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
