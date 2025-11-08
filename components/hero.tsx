@@ -39,15 +39,15 @@ export function Hero() {
 
 				<div className="mt-16 flex justify-center gap-8 text-sm text-slate-400">
 					<div>
-						<p className="text-2xl font-bold text-cyan-400">2+</p>
+						<p className="text-2xl font-bold text-cyan-400">3+</p>
 						<p>Years Experience</p>
 					</div>
 					<div>
-						<p className="text-2xl font-bold text-cyan-400">10+</p>
+						<p className="text-2xl font-bold text-cyan-400">15+</p>
 						<p>Projects Shipped</p>
 					</div>
 					<div>
-						<p className="text-2xl font-bold text-cyan-400">100+</p>
+						<p className="text-2xl font-bold text-cyan-400">150+</p>
 						<p>Students Taught</p>
 					</div>
 				</div>
