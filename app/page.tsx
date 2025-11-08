@@ -1,3 +1,4 @@
+import { ConnectSection } from '@/components/connect-section';
 import { ChatInterface } from '../components/chat-interface';
 import { Hero } from '../components/hero';
 import { ProjectShowcase } from '../components/project-showcase';
@@ -10,6 +11,7 @@ export default function Home() {
 			<ChatInterface />
 			<ProjectShowcase />
 			<SkillsSection />
+			<ConnectSection />
 		</main>
 	);
 }
