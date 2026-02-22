@@ -25,14 +25,14 @@ const EmblaCarousel = (props: PropType) => {
 	const { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick } = usePrevNextButtons(emblaApi);
 
 	return (
-		<div className="relative overflow-hidden">
+		<div className="overflow-hidden">
 			{/* embla container */}
 			<div className="overflow-hidden" ref={emblaRef}>
 				{/* embla__viewport */}
 				<div className="-ml-4 flex">
 					{/* embla__container - negative margin for gap */}
 					{projects.map((project) => (
-						<div className="w-full min-w-0 flex-none pl-4 sm:w-1/2 md:w-1/3" key={project.title}>
+						<div className="w-full min-w-0 flex-none pl-4 sm:w-1/2 lg:w-1/3" key={project.title}>
 							{/* embla__slide - adjust width as needed */}
 							<div
 								className={`flex h-full w-full flex-col justify-between rounded-xl border border-slate-700 bg-slate-800 p-6 transition-colors hover:border-cyan-500`}
@@ -68,30 +68,32 @@ const EmblaCarousel = (props: PropType) => {
 					))}
 				</div>
 			</div>
-			<div className="absolute top-1/2 z-10 flex w-full -translate-y-1/2 justify-between px-5">
-				{/* embla__controls for arrows */}
-				<PrevButton
-					onClick={onPrevButtonClick}
-					disabled={prevBtnDisabled}
-					className="rounded-full bg-slate-800 p-3 text-white opacity-30 transition-all hover:bg-cyan-600 hover:opacity-100"
-				/>
-				<NextButton
-					onClick={onNextButtonClick}
-					disabled={nextBtnDisabled}
-					className="rounded-full bg-slate-800 p-3 text-white opacity-30 transition-all hover:bg-cyan-600 hover:opacity-100"
-				/>
-			</div>
-			<div className="mt-8 flex justify-center space-x-2">
-				{/* embla__dots */}
-				{scrollSnaps.map((_, index) => (
-					<DotButton
-						key={index}
-						onClick={() => onDotButtonClick(index)}
-						className={`h-3 w-3 cursor-pointer rounded-full transition-all ${
-							index === selectedIndex ? 'scale-125 bg-cyan-500' : 'bg-slate-600 hover:bg-slate-500'
-						}`}
+			<div className="mt-8 flex items-center justify-between">
+				<div className="flex justify-between gap-2 px-5">
+					{/* embla__controls for arrows */}
+					<PrevButton
+						onClick={onPrevButtonClick}
+						disabled={prevBtnDisabled}
+						className="rounded-full bg-slate-800 p-3 text-white opacity-30 transition-all hover:bg-cyan-600 hover:opacity-100"
 					/>
-				))}
+					<NextButton
+						onClick={onNextButtonClick}
+						disabled={nextBtnDisabled}
+						className="rounded-full bg-slate-800 p-3 text-white opacity-30 transition-all hover:bg-cyan-600 hover:opacity-100"
+					/>
+				</div>
+				<div className="flex justify-center gap-2">
+					{/* embla__dots */}
+					{scrollSnaps.map((_, index) => (
+						<DotButton
+							key={index}
+							onClick={() => onDotButtonClick(index)}
+							className={`h-3 w-3 cursor-pointer rounded-full transition-all ${
+								index === selectedIndex ? 'scale-125 bg-cyan-500' : 'bg-slate-600 hover:bg-slate-500'
+							}`}
+						/>
+					))}
+				</div>
 			</div>
 			{/* Project Counter */}
 			<div className="mt-4 text-center">

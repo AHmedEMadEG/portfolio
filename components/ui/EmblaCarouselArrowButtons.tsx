@@ -50,7 +50,7 @@ type ButtonProps = PropsWithChildren<
 
 const EmblaButton: React.FC<ButtonProps> = ({ children, className, ...rest }) => (
 	<button
-		className={`focus:ring-opacity-75 flex cursor-pointer items-center justify-center rounded-full bg-slate-800 p-3 text-white shadow-lg transition-all hover:scale-110 hover:bg-cyan-600 focus:ring-2 focus:ring-cyan-500 focus:outline-none ${className}`}
+		className={`flex cursor-pointer items-center justify-center rounded-full bg-slate-900 p-3 text-white shadow-lg transition-all hover:scale-110 hover:bg-cyan-600 focus:ring-2 focus:ring-cyan-500 focus:outline-none ${className}`}
 		type="button"
 		{...rest}
 	>
