@@ -60,7 +60,7 @@ User Question: ${userQuestion}
 Please provide a helpful response about Ahmed based on the information above:`;
 
 	const response = await ai.models.generateContent({
-		model: 'gemini-2.0-flash-exp',
+		model: 'gemini-2.5-flash',
 		contents: prompt,
 		config: {
 			maxOutputTokens: 500,
