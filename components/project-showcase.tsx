@@ -5,6 +5,17 @@ import EmblaCarousel from './ui/EmblaCarousel';
 
 const projects = [
 	{
+		title: 'Rebus Mentorship Platform',
+		description:
+			'Online mentorship platform enabling mentor discovery, session bookings, events, and real-time communication.',
+		tech: ['Next.js', 'TypeScript', 'Firebase', 'TailwindCSS', 'TanStack Query'],
+		highlights: ['Session booking system', 'Events management', 'Real-time chat'],
+		date: '02/2026 - Present',
+		fullDescription:
+			'Contributing to the development of a mentorship platform connecting mentors and mentees through structured session bookings and interactive communication. Developed core features using Next.js, TypeScript, and Firebase including mentor discovery, role-based dashboards, and scalable frontend architecture. Implemented key modules such as session booking, event management, and real-time chat, along with notifications and mentor profile pages to streamline mentorship interactions.',
+		liveLink: 'https://www.mentor.rebusai.com/',
+	},
+	{
 		title: 'CVRM Platform',
 		description:
 			'Multi-tenant CRM system with role-based dashboards, real-time notifications, and contract lifecycle management.',
@@ -13,6 +24,7 @@ const projects = [
 		date: '10/2025 - 02/2026',
 		fullDescription:
 			'Part of the development team of a full-cycle CVRM platform from concept to deployment, designed to streamline customer and vendor interactions. Engineered a multi-tenant architecture with role-based dashboards and implemented core modules including lead/pipeline management, customer & vendor portals, contract lifecycle tracking, and an integrated ticketing system.',
+		liveLink: 'https://seam-portal.com/',
 	},
 	{
 		title: 'MerchApp',
@@ -23,6 +35,7 @@ const projects = [
 		date: '06/2025',
 		fullDescription:
 			'Built a full-featured affiliate marketplace with role-based access for users, merchants, and a centralized admin. Developed a merchant dashboard to manage products, monitor performance, and track product view analytics. Implemented wishlist functionality, location-based personalization, and category filtering to enhance user engagement.',
+		liveLink: 'https://merch-three.vercel.app/',
 	},
 	{
 		title: 'TrendsApp',

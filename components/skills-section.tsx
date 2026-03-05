@@ -13,7 +13,7 @@ const skillCategories = [
 	},
 	{
 		category: 'Tools & Languages',
-		skills: ['TypeScript', 'JavaScript', 'Git', 'Java', 'C++'],
+		skills: ['TypeScript', 'JavaScript', 'Git', 'C++'],
 	},
 ];
 

@@ -1,5 +1,6 @@
 import { EmblaOptionsType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
+import { ExternalLink } from 'lucide-react';
 import { NextButton, PrevButton, usePrevNextButtons } from './EmblaCarouselArrowButtons';
 import { DotButton, useDotButton } from './EmblaCarouselDotButton';
 
@@ -10,6 +11,7 @@ type Project = {
 	highlights: string[];
 	date: string;
 	fullDescription: string;
+	liveLink?: string;
 };
 
 type PropType = {
@@ -45,15 +47,25 @@ const EmblaCarousel = (props: PropType) => {
 
 									<p className="mb-4 text-sm text-slate-300">{project.fullDescription}</p>
 
-									<div className="mb-4">
-										<p className="mb-2 text-xs text-slate-400">Highlights:</p>
-										<ul className="space-y-1">
-											{project.highlights.map((highlight) => (
-												<li key={highlight} className="text-xs text-cyan-400">
-													• {highlight}
-												</li>
-											))}
-										</ul>
+									<div className="flex items-center justify-between">
+										<div>
+											<p className="mb-2 text-xs text-slate-400">Highlights:</p>
+											<ul className="space-y-1">
+												{project.highlights.map((highlight) => (
+													<li key={highlight} className="text-xs text-cyan-400">
+														• {highlight}
+													</li>
+												))}
+											</ul>
+										</div>
+										{project.liveLink && (
+											<a href={project.liveLink} target="_blank" rel="noopener noreferrer">
+												<button className="flex cursor-pointer items-center gap-1 rounded bg-slate-700 px-2 py-1 text-xs text-slate-300 transition-colors hover:bg-cyan-600 hover:text-white">
+													Live
+													<ExternalLink className="h-3 w-3 text-slate-300" />
+												</button>
+											</a>
+										)}
 									</div>
 								</div>
 								<div className="flex flex-wrap gap-2 pt-4">
