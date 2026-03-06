@@ -1,9 +1,9 @@
 'use client';
 
 import { EmblaOptionsType } from 'embla-carousel';
-import EmblaCarousel from './ui/EmblaCarousel';
+import EmblaCarousel, { Project } from './ui/EmblaCarousel';
 
-const projects = [
+const projects: Project[] = [
 	{
 		title: 'Rebus Mentorship Platform',
 		description:
@@ -14,6 +14,7 @@ const projects = [
 		fullDescription:
 			'Contributing to the development of a mentorship platform connecting mentors and mentees through structured session bookings and interactive communication. Developed core features using Next.js, TypeScript, and Firebase including mentor discovery, role-based dashboards, and scalable frontend architecture. Implemented key modules such as session booking, event management, and real-time chat, along with notifications and mentor profile pages to streamline mentorship interactions.',
 		liveLink: 'https://www.mentor.rebusai.com/',
+		type: 'Professional',
 	},
 	{
 		title: 'CVRM Platform',
@@ -25,6 +26,7 @@ const projects = [
 		fullDescription:
 			'Part of the development team of a full-cycle CVRM platform from concept to deployment, designed to streamline customer and vendor interactions. Engineered a multi-tenant architecture with role-based dashboards and implemented core modules including lead/pipeline management, customer & vendor portals, contract lifecycle tracking, and an integrated ticketing system.',
 		liveLink: 'https://seam-portal.com/',
+		type: 'Professional',
 	},
 	{
 		title: 'MerchApp',
@@ -36,6 +38,7 @@ const projects = [
 		fullDescription:
 			'Built a full-featured affiliate marketplace with role-based access for users, merchants, and a centralized admin. Developed a merchant dashboard to manage products, monitor performance, and track product view analytics. Implemented wishlist functionality, location-based personalization, and category filtering to enhance user engagement.',
 		liveLink: 'https://merch-three.vercel.app/',
+		type: 'Professional',
 	},
 	{
 		title: 'TrendsApp',
@@ -45,6 +48,7 @@ const projects = [
 		date: '05/2025',
 		fullDescription:
 			'Built a live AI-powered trend explorer enabling users to search across Google, YouTube, Reddit, and more. Integrated AI content generation for social media hooks, post captions, blog intros, hashtags, and video scripts. Implemented Firebase authentication and PayPal-based subscription flow for premium users.',
+		type: 'Professional',
 	},
 	{
 		title: 'ITI Graduates Portal',
@@ -54,6 +58,7 @@ const projects = [
 		date: '10/2022 - 11/2022',
 		fullDescription:
 			'Led a team of 7 to launch a platform for ITI alumni engagement, now used by over 1,000 active users. Designed and implemented admin dashboards and user registration management tools. Reviewed GitHub pull requests and enforced best practices for scalable code.',
+		type: 'Professional',
 	},
 	{
 		title: 'ToyzCity',
@@ -63,6 +68,8 @@ const projects = [
 		date: '09/2022 - 10/2022',
 		fullDescription:
 			'Spearheaded development of a toy exchange platform with advanced filtering (region, condition, availability). Oversaw a team of 5, reviewing PRs, offering feedback, and managing sprint priorities. Delivered full-stack features including item listings, user dashboards, and mobile-first UI.',
+		liveLink: 'https://toy-treasures-frontend-rbrk.vercel.app/',
+		type: 'Academic',
 	},
 	{
 		title: 'Social Media App',
@@ -71,7 +78,8 @@ const projects = [
 		highlights: ['Real-time features', 'User interactions', 'Following system'],
 		date: '09/2022',
 		fullDescription:
-			'Developing a platform where users can create posts, comment, and like content. Planning future features including real-time notifications for interactions, implementing functionality for following other users and enabling chat.',
+			'Developed a platform where users can create posts, comment, and like content. Planning future features including real-time notifications for interactions, implementing functionality for following other users and enabling chat.',
+		type: 'Academic',
 	},
 	{
 		title: 'SuppleMart',
@@ -81,6 +89,7 @@ const projects = [
 		date: '08/2022 - 09/2022',
 		fullDescription:
 			'Directed a 5-member team to build a responsive e-commerce platform for health supplements. Built key modules including authentication, authorization, and a fully functional product cart. Designed and implemented reusable components like the app navbar and checkout logic.',
+		type: 'Academic',
 	},
 	{
 		title: 'Examination Platform',
@@ -89,6 +98,7 @@ const projects = [
 		highlights: ['Automated grading', 'Real-time feedback', 'Online testing'],
 		date: '07/2022',
 		fullDescription: 'Built an online exam platform with automated grading and real-time feedback for users.',
+		type: 'Academic',
 	},
 	{
 		title: 'OutfitMarket',
@@ -98,6 +108,7 @@ const projects = [
 		date: '04/2022',
 		fullDescription:
 			'Built an online marketplace with cart, checkout using stripe, authentication using JWT, and product filtering features.',
+		type: 'Academic',
 	},
 ];
 

@@ -4,7 +4,7 @@ import { ExternalLink } from 'lucide-react';
 import { NextButton, PrevButton, usePrevNextButtons } from './EmblaCarouselArrowButtons';
 import { DotButton, useDotButton } from './EmblaCarouselDotButton';
 
-type Project = {
+export type Project = {
 	title: string;
 	description: string;
 	tech: string[];
@@ -12,6 +12,7 @@ type Project = {
 	date: string;
 	fullDescription: string;
 	liveLink?: string;
+	type: 'Professional' | 'Academic';
 };
 
 type PropType = {
@@ -42,7 +43,10 @@ const EmblaCarousel = (props: PropType) => {
 								<div>
 									<div className="mb-4 flex items-start justify-between">
 										<h3 className="text-xl font-bold text-white transition-colors group-hover:text-cyan-400">{project.title}</h3>
-										<span className="text-xs text-slate-400">{project.date}</span>
+										<div className="flex flex-col items-end gap-2">
+											<span className="text-xs text-slate-400">{project.date}</span>
+											<span className="w-fit rounded bg-slate-700 px-2 py-1 text-xs text-cyan-400">{project.type}</span>
+										</div>
 									</div>
 
 									<p className="mb-4 text-sm text-slate-300">{project.fullDescription}</p>

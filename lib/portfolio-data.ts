@@ -39,6 +39,18 @@ export const portfolioData = {
 
 	projects: [
 		{
+			title: 'Rebus Mentorship Platform',
+			description:
+				'Online mentorship platform enabling mentor discovery, session bookings, events, and real-time communication.',
+			tech: ['Next.js', 'TypeScript', 'Firebase', 'TailwindCSS', 'TanStack Query'],
+			highlights: ['Session booking system', 'Events management', 'Real-time chat'],
+			date: '02/2026 - Present',
+			fullDescription:
+				'Contributing to the development of a mentorship platform connecting mentors and mentees through structured session bookings and interactive communication. Developed core features using Next.js, TypeScript, and Firebase including mentor discovery, role-based dashboards, and scalable frontend architecture. Implemented key modules such as session booking, event management, and real-time chat, along with notifications and mentor profile pages to streamline mentorship interactions.',
+			liveLink: 'https://www.mentor.rebusai.com/',
+			type: 'Professional',
+		},
+		{
 			title: 'CVRM Platform',
 			description:
 				'Multi-tenant CRM system with role-based dashboards, real-time notifications, and contract lifecycle management.',
@@ -92,7 +104,7 @@ export const portfolioData = {
 			highlights: ['Real-time features', 'User interactions', 'Following system'],
 			date: '09/2024 - Present',
 			fullDescription:
-				'Developing a platform where users can create posts, comment, and like content. Planning future features including real-time notifications for interactions, implementing functionality for following other users and enabling chat.',
+				'Developed a platform where users can create posts, comment, and like content. Planning future features including real-time notifications for interactions, implementing functionality for following other users and enabling chat.',
 		},
 		{
 			title: 'SuppleMart',
