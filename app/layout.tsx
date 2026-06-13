@@ -14,10 +14,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-	title: 'Ahmed Emad - Fullstack Developer',
-	description: 'AI-powered portfolio showcasing fullstack development expertise with MERN stack',
+	title: 'Ahmed Emad - Full-Stack Engineer',
+	description: 'AI-powered portfolio showcasing full-stack engineering with Next.js, React, and Node.js',
 	openGraph: {
-		title: 'Ahmed Emad - Fullstack Developer',
+		title: 'Ahmed Emad - Full-Stack Engineer',
 		description: 'Interactive AI-powered portfolio',
 		type: 'website',
 	},

@@ -12,12 +12,12 @@ export function Hero() {
 					<h1 className="mb-4 text-5xl font-bold tracking-tight text-white transition-all duration-500 hover:text-cyan-400 hover:drop-shadow-[0_0_15px_rgba(34,211,238,0.5)] md:text-7xl">
 						Ahmed Emad
 					</h1>
-					<p className="text-xl font-light text-cyan-400 md:text-2xl">Fullstack Developer | MERN Stack Specialist</p>
+					<p className="text-xl font-light text-cyan-400 md:text-2xl">Full-Stack Engineer | Next.js, React & Node.js</p>
 				</div>
 
 				<p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-slate-300">
-					I build elegant, high-performance web applications using modern technologies. Currently focused on crafting
-					seamless user experiences with Next.js and cutting-edge frontend architecture.
+					I build elegant, high-performance web applications with Next.js, React, and Node.js — currently developing
+					AI-powered products at RebusAI and delivering custom solutions for clients worldwide.
 				</p>
 
 				<div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -47,7 +47,7 @@ export function Hero() {
 						<p>Projects Shipped</p>
 					</div>
 					<div>
-						<p className="text-2xl font-bold text-cyan-400">150+</p>
+						<p className="text-2xl font-bold text-cyan-400">190+</p>
 						<p>Students Taught</p>
 					</div>
 				</div>

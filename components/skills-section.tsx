@@ -1,21 +1,19 @@
-const skillCategories = [
-	{
-		category: 'Frontend',
-		skills: ['React.js', 'Next.js', 'Angular', 'TailwindCSS', 'Shadcn', 'Radix UI'],
-	},
-	{
-		category: 'Backend',
-		skills: ['Node.js', 'Express.js', 'Nest.js', 'REST APIs'],
-	},
-	{
-		category: 'Database',
-		skills: ['MongoDB', 'MySQL', 'SQLite', 'Firebase'],
-	},
-	{
-		category: 'Tools & Languages',
-		skills: ['TypeScript', 'JavaScript', 'Git', 'C++'],
-	},
-];
+import { portfolioData } from '@/lib/portfolio-data';
+
+// Map portfolioData.skills keys to display labels, keeping a single source of truth for the values.
+const categoryLabels: Record<keyof typeof portfolioData.skills, string> = {
+	frontend: 'Frontend',
+	backend: 'Backend',
+	database: 'Database',
+	tools: 'Tools',
+	features: 'Features',
+	languages: 'Languages',
+};
+
+const skillCategories = (Object.keys(portfolioData.skills) as (keyof typeof portfolioData.skills)[]).map((key) => ({
+	category: categoryLabels[key],
+	skills: portfolioData.skills[key],
+}));
 
 export function SkillsSection() {
 	return (

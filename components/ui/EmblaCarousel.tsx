@@ -1,19 +1,9 @@
 import { EmblaOptionsType } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ExternalLink } from 'lucide-react';
+import { type Project } from '@/lib/portfolio-data';
 import { NextButton, PrevButton, usePrevNextButtons } from './EmblaCarouselArrowButtons';
 import { DotButton, useDotButton } from './EmblaCarouselDotButton';
-
-export type Project = {
-	title: string;
-	description: string;
-	tech: string[];
-	highlights: string[];
-	date: string;
-	fullDescription: string;
-	liveLink?: string;
-	type: 'Professional' | 'Academic';
-};
 
 type PropType = {
 	projects: Project[];
