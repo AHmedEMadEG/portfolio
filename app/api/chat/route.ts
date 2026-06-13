@@ -1,9 +1,12 @@
-import { GoogleGenAI } from '@google/genai';
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
+import { createGroq } from '@ai-sdk/groq';
+import { generateText } from 'ai';
+import { NextResponse } from 'next/server';
 import { portfolioData } from '../../../lib/portfolio-data';
 
 export const maxDuration = 30;
 
-const systemPrompt = `You are Ahmed's AI assistant, representing his professional portfolio and experience. 
+const systemPrompt = `You are Ahmed's AI assistant, representing his professional portfolio and experience.
 You have access to his complete professional information including projects, skills, experience, and education.
 
 When answering questions:
@@ -16,6 +19,14 @@ When answering questions:
 Portfolio Context:
 ${JSON.stringify(portfolioData, null, 2)}`;
 
+const groq = createGroq({
+	apiKey: process.env.GROQ_API_KEY!,
+});
+
+const gemini = createGoogleGenerativeAI({
+	apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY!,
+});
+
 export async function POST(req: Request) {
 	try {
 		const { messages } = await req.json();
@@ -24,11 +35,50 @@ export async function POST(req: Request) {
 		const lastMessage = messages[messages.length - 1];
 		const userQuestion = lastMessage.content;
 
-		const text = await generateContentFromMLDev(userQuestion);
+		const userPrompt = `User Question: ${userQuestion}
 
-		return new Response(text, {
+Please provide a helpful response about Ahmed based on the information above:`;
+
+		let result: Awaited<ReturnType<typeof generateText>>;
+		let modelUsed = 'gemini';
+
+		// ── PRIMARY: Gemini ─────────────────────────────────────
+		try {
+			result = await generateText({
+				model: gemini('gemini-flash-latest'),
+				system: systemPrompt,
+				prompt: userPrompt,
+				temperature: 0.2,
+			});
+		} catch (geminiError) {
+			console.warn('Gemini failed, falling back to Groq:', geminiError);
+
+			modelUsed = 'groq';
+
+			// ── FALLBACK: Groq ──────────────────────────────────
+			try {
+				result = await generateText({
+					model: groq('llama-3.1-8b-instant'),
+					system: systemPrompt,
+					prompt: userPrompt,
+					temperature: 0.2,
+				});
+			} catch (groqError) {
+				console.error('Both Gemini and Groq failed:', groqError);
+
+				return NextResponse.json(
+					{
+						error: `AI service temporarily unavailable: gemini error: ${geminiError}, groq error: ${groqError}`,
+					},
+					{ status: 500 }
+				);
+			}
+		}
+
+		return new Response(result.text, {
 			headers: {
-				'Content-Type': 'application/json',
+				'Content-Type': 'text/plain; charset=utf-8',
+				'x-model-used': modelUsed,
 			},
 		});
 	} catch (error) {
@@ -43,30 +93,4 @@ export async function POST(req: Request) {
 			}
 		);
 	}
-}
-
-const GEMINI_API_KEY = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
-
-async function generateContentFromMLDev(userQuestion: string) {
-	const ai = new GoogleGenAI({
-		vertexai: false,
-		apiKey: GEMINI_API_KEY,
-	});
-
-	const prompt = `${systemPrompt}
-
-User Question: ${userQuestion}
-
-Please provide a helpful response about Ahmed based on the information above:`;
-
-	const response = await ai.models.generateContent({
-		model: 'gemini-2.5-flash',
-		contents: prompt,
-		config: {
-			maxOutputTokens: 500,
-			temperature: 0.7,
-		},
-	});
-
-	return response.text;
 }
