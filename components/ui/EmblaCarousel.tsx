@@ -22,23 +22,29 @@ const EmblaCarousel = ({ projects, options }: PropType) => {
 	const tweenNodesRef = useRef<HTMLElement[]>([]);
 	const tweenFactorRef = useRef(0);
 	const autoplayRef = useRef<ReturnType<typeof setInterval> | null>(null);
+	const inViewRef = useRef(false);
 
 	const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
 	const { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick } = usePrevNextButtons(emblaApi);
 
 	// --- Autoplay -------------------------------------------------------------------------------
-	// One interval that ALWAYS runs and is only ever RESTARTED on interaction — never stopped — so it
-	// can't get stuck "paused". Restarting on each manual move also pushes the next auto-advance a
-	// full delay away, so it can never collide with a click (the cause of the skipped slides).
-	const resetAutoplay = useCallback(() => {
+	// One interval, gated on viewport visibility (an IntersectionObserver starts/stops it) and only
+	// ever RESTARTED on interaction — never paused by a flag that could get stuck. Restarting on each
+	// manual move pushes the next auto-advance a full delay away, so it can't collide with a click
+	// (the cause of the skipped slides).
+	const clearAutoplay = useCallback(() => {
 		if (autoplayRef.current) clearInterval(autoplayRef.current);
 		autoplayRef.current = null;
-		if (!emblaApi) return;
+	}, []);
+
+	const resetAutoplay = useCallback(() => {
+		clearAutoplay();
+		if (!emblaApi || !inViewRef.current) return;
 		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 		autoplayRef.current = setInterval(() => {
 			if (document.visibilityState === 'visible') emblaApi.scrollNext();
 		}, AUTOPLAY_DELAY);
-	}, [emblaApi]);
+	}, [emblaApi, clearAutoplay]);
 
 	const handlePrev = useCallback(() => {
 		onPrevButtonClick();
@@ -131,14 +137,23 @@ const EmblaCarousel = ({ projects, options }: PropType) => {
 
 	useEffect(() => {
 		if (!emblaApi) return;
-		resetAutoplay(); // start
+		// Autoplay only while the carousel is on screen: start/resume on enter, pause on leave.
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				inViewRef.current = entry.isIntersecting;
+				if (entry.isIntersecting) resetAutoplay();
+				else clearAutoplay();
+			},
+			{ threshold: 0.2 }
+		);
+		observer.observe(emblaApi.rootNode());
 		emblaApi.on('pointerDown', resetAutoplay); // restart the countdown when a drag begins
 		return () => {
-			if (autoplayRef.current) clearInterval(autoplayRef.current);
-			autoplayRef.current = null;
+			observer.disconnect();
+			clearAutoplay();
 			emblaApi.off('pointerDown', resetAutoplay);
 		};
-	}, [emblaApi, resetAutoplay]);
+	}, [emblaApi, resetAutoplay, clearAutoplay]);
 
 	return (
 		<div className="embla">
