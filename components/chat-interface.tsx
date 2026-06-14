@@ -64,14 +64,14 @@ export function ChatInterface() {
 		scrollToBottom();
 	}, [messages]);
 
-	const handleSubmit = async (e: React.FormEvent) => {
-		e.preventDefault();
-		if (!input.trim() || isLoading) return;
+	const sendMessage = async (text: string) => {
+		const trimmed = text.trim();
+		if (!trimmed || isLoading) return;
 
 		const userMessage: Message = {
 			id: Date.now().toString(),
 			role: 'user',
-			content: input,
+			content: trimmed,
 		};
 
 		setMessages((prev) => [...prev, userMessage]);
@@ -127,6 +127,11 @@ export function ChatInterface() {
 		} finally {
 			setIsLoading(false);
 		}
+	};
+
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+		sendMessage(input);
 	};
 
 	const suggestedQuestions = [
@@ -242,8 +247,9 @@ export function ChatInterface() {
 							{suggestedQuestions.map((question, i) => (
 								<Reveal key={question} delay={i * 80}>
 									<button
-										onClick={() => setInput(question)}
-										className="group flex h-full w-full items-center gap-2 rounded-lg border border-slate-700 bg-slate-800/60 p-3 text-left text-sm text-slate-300 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-500 hover:bg-slate-700/50 hover:shadow-[0_8px_24px_-10px_rgba(34,211,238,0.5)]"
+										onClick={() => sendMessage(question)}
+										disabled={isLoading}
+										className="group flex h-full w-full items-center gap-2 rounded-lg border border-slate-700 bg-slate-800/60 p-3 text-left text-sm text-slate-300 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-500 hover:bg-slate-700/50 hover:shadow-[0_8px_24px_-10px_rgba(34,211,238,0.5)] disabled:cursor-not-allowed disabled:opacity-50"
 									>
 										<Sparkles className="h-3.5 w-3.5 shrink-0 text-cyan-400/70 transition-colors group-hover:text-cyan-400" />
 										{question}

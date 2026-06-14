@@ -37,12 +37,17 @@ export const projects: Project[] = [
 	{
 		title: 'Real Estate Distress Finder',
 		description:
-			'Telegram bot analyzing UAE property listings to surface high-opportunity real estate deals.',
+			'Distributed Telegram bot analyzing UAE property listings to surface high-opportunity real estate deals.',
 		tech: ['Next.js', 'TypeScript', 'Python', 'FastAPI', 'Firebase', 'Playwright', 'Vercel', 'Telegram Bot API'],
-		highlights: ['Bayut & PropertyFinder analysis', 'Price-drop & duplicate detection', 'Two-service architecture'],
+		highlights: [
+			'Distributed 3-service architecture',
+			'Bayut & PropertyFinder scrapers',
+			'Custom deal-matching logic',
+			'Telegram webhook bot',
+		],
 		date: '04/2026 - Present',
 		fullDescription:
-			'Building a Telegram bot that analyzes Bayut and PropertyFinder listings to identify high-opportunity UAE real estate deals using price drops, reposts, time on market, and duplicate listings. Designed a two-service architecture separating the user-facing bot from the background scraping service for better reliability and scalability.',
+			"My most technically complex project to date — a distributed system with three services running together in coordination: a Next.js app on Vercel that handles the Telegram webhook and user interactions, a background scraping service on a cloud VM, and a dedicated Bayut scraper running on a local machine. It analyzes Bayut and PropertyFinder listings to surface high-opportunity UAE real estate deals through custom matching logic across price drops, reposts, time on market, and duplicate detection. Orchestrating the three services, the matching pipeline, and the Telegram webhook makes it the most challenging build I've delivered.",
 		type: 'Professional',
 	},
 	{
